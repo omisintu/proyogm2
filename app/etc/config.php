@@ -142,6 +142,7 @@ return array (
     'Magento_CatalogWidget' => 1,
     'Dotdigitalgroup_Email' => 1,
     'Magento_WishlistAnalytics' => 1,
+    'MyCompany_ConfigurableProductPriceRanges' => 1,
     'Prince_Buynow' => 1,
     'Shopial_Facebook' => 1,
     'Temando_Shipping' => 1,

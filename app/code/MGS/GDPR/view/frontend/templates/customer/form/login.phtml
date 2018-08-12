@@ -3,8 +3,8 @@
 <?php $active = $helper->getStoreConfig('gdpr/general/active') ?>
 <?php if($active && $showCheckbox): ?>
 <?php $label = $helper->getStoreConfig('gdpr/login/label') ?>
-	<div class="field choice mgs-gdpr-checkbox">
+	<div class="field choice mgs-gdpr-checkbox required">
 		<input name="login[accept_gdpr]" value="1" id="accept_gdpr" class="checkbox" type="checkbox" data-validate="{required:true}"/>
-		<label for="accept_gdpr" class="label"><span><?php echo $label ?></span></label>
+		<label for="accept_gdpr label" class="label"><span><?php echo $label ?></span></label>
 	</div>
 <?php endif ?>
