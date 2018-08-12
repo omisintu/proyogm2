@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="mage/gallery/gallery.css"/>
+    </head>
+    <body>
+		<referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="script.sharethis" template="MGS_Mpanel::sharethis/sharethis_script.phtml" ifconfig="mpanel/share_config/share_product_detail"/>
+        </referenceBlock>
+        
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.detail.info" as="product_detail_info" template="product/view/detail_layout.phtml" before="-">
+                <block class="Magento\Catalog\Block\Product\View" name="product.sticky" ifconfig="mpanel/product_details/product_sticky" template="product/view/product_sticky.phtml">
+                    <block class="Magento\Catalog\Block\Product\AbstractProduct" name="product.sticky.price" template="product/view/price_clone.phtml" />
+                </block>
+            </block>
+        </referenceContainer>
+        
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template" name="product.detail.sharethis" after="-" template="MGS_Mpanel::sharethis/sharethis.phtml" ifconfig="mpanel/share_config/share_product_detail"/>
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.prodname" template="product/view/ProdName.phtml" after="-"></block>
+        </referenceContainer>
+                
+        <move element="product.info.main" destination="product.detail.info"/>
+        <move element="product.price.final" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.overview" destination="product.info.main" after="alert.urls"/>
+        <!-- <move element="product.info.review" destination="product.info.stock.sku" before="-"/> -->
+        <move element="product.info.review" destination="product.info.main" before="-"/>
+        <move element="product.info.prodname" destination="product.info.main" before="-"/>
+        <!-- New Gallery -->
+        <referenceContainer name="product.info.media" remove="true"/>
+        <referenceBlock name="product.info.media.image" template="Magento_Catalog::product/view/gallery.phtml" />
+        <move element="product.info.media.image" destination="product.detail.info"/>
+    </body>
+</page>
